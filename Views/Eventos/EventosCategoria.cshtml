@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcCoreConciertos.Models.Evento>
+
+@{
+    string UrlBucket = keysModel.Bucket;
+}
+
+<h1>EventosCategoria</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if(Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Artista)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdCategoria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Artista)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCategoria)
+                    </td>
+                    <td>
+                        <img src="@UrlBucket@item.Imagen"
+                             style="width:70px; height: 80px" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>No hay ningún evento en este categoría</h1>
+}
+
